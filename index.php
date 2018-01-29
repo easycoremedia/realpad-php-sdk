@@ -1,12 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: slava
- * Date: 24.01.2018
- * Time: 15:33
- */
-
 namespace Core;
 
 require_once 'realpadDriver.php';
@@ -14,12 +7,14 @@ require_once 'realpadDriver.php';
 class Main
 {
     /**
-     * @return resource
-     * @description init method runs on POST query
+     * @return string
+     * @description this method handles front-end form
      *
      */
     public static function init()
     {
+        $body = [];
+
         if (!empty($_POST['login'])
             &&
             !empty($_POST['password'])
@@ -52,10 +47,9 @@ class Main
                     unset($body['endpoint']);
                     break;
             }
-
-            $driver = new realpadDriver($_POST['endpoint']);
-            return $driver->post($body);
         }
+        $driver = new realpadDriver($_POST['endpoint']);
+        return $driver->post($body);
     }
 
     /**
@@ -64,7 +58,7 @@ class Main
      * @description This function just parses XML object to display response
      *
      */
-    public static function renderResponce($xml)
+    public static function renderResponse($xml)
     {
 
         $projectData = '';
@@ -85,7 +79,7 @@ class Main
 }
 
 $xml = Main::init();
-$markUp = Main::renderResponce($xml);
+$markUp = Main::renderResponse($xml);
 ?>
 
 <!doctype html>

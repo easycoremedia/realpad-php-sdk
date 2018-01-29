@@ -1,13 +1,7 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: slava
- * Date: 24.01.2018
- * Time: 15:34
- */
-
 namespace Core;
+
 require_once 'Logger.php';
 
 class realpadDriver
